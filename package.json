@@ -19,4 +19,7 @@
     "mongoskin": "*",
 	 "ejs": "~1.0.0",
   }
+  "engines": {
+    "node": "0.10.x"
+  }
 }
