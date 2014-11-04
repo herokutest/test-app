@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var cool = require('cool-ascii-faces');
 // Database
 var mongo = require('mongoskin');
 //var db = mongo.db("mongodb://localhost:27017/nodetest2", {native_parser:true});
@@ -21,7 +21,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+app.set('port', (process.env.PORT || 5000))
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
@@ -70,5 +70,12 @@ app.use(function(err, req, res, next) {
     });
 });
 
+app.get('/', function(request, response) {
+  response.send(cool());
+});
+
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'))
+})
 
 module.exports = app;
